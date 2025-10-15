@@ -11,7 +11,7 @@ import time
 
 # List of URLs to scrape
 urls = [
-    "https://cargillsonline.com/Product/Fruits?IC=OQ==&NC=RnJ1aXRz"
+    "https://cargillsonline.com/Product/Food-Cupboard?IC=Nw==&NC=Rm9vZCBDdXBib2FyZA=="
 ]
 
 data = []
@@ -19,10 +19,6 @@ data = []
 # Set up Selenium WebDriver with headless option
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
-options.add_argument('--no-sandbox')
-options.add_argument('--disable-dev-shm-usage')
-options.add_argument('--disable-gpu')
-options.add_argument('--window-size=1920,1080')
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 for base_url in urls:
@@ -124,7 +120,7 @@ driver.quit()
 # Save to CSV
 if data:
     df = pd.DataFrame(data)
-    df.to_csv('fruits.csv', index=False)
-    print(f"Scraped {len(data)} items and saved to fruits.csv")
+    df.to_csv('food.csv', index=False)
+    print(f"Scraped {len(data)} items and saved to food.csv")
 else:
     print("No data scraped.")
